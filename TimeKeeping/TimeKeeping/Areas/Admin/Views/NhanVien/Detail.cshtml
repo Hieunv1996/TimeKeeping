@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Detail.cshtml";
+}
+
+@section modalTitle
+{
+    Thêm mới nhân viên
+}
+
+<div class="form-group">
+    <label for="ID">ID Nhân viên</label>
+    <input type="text" class="form-control" id="ID" placeholder="ID Nhân viên" disabled="disabled"/>
+</div>
+<div class="form-group">
+    <label for="Ho">Họ</label>
+    <input type="text" class="form-control" id="Ho" placeholder="Họ" />
+</div>
+<div class="form-group">
+    <label for="Ten">Tên</label>
+    <input type="text" class="form-control" id="Ten" placeholder="Tên" />
+</div>
+<div class="form-group">
+    <label for="GioiTinh">Giới tính</label>
+    <select id="GioiTinh" class="form-control">
+        <option disabled selected> -- Select an option -- </option>
+        <option value="true">Nam</option>
+        <option value="false">Nữ</option>
+    </select>
+    @*<input type="radio" name="" class="form-control" id="GioiTinh" placeholder="Giới tính" />*@
+</div>
+<div class="form-group">
+    <label for="NgayVaoLam">Ngày vào làm</label>
+    <input type="date" class="form-control" id="NgayVaoLam" placeholder="Ngày vào làm" />
+</div>
+<div class="form-group">
+    <label for="NgaySinh">Ngày sinh</label>
+    <input type="date" class="form-control" id="NgaySinh" placeholder="Ngày sinh" />
+</div>
+<div class="form-group">
+    <label for="CMND">CMND</label>
+    <input type="text" class="form-control" id="CMND" placeholder="CMND" />
+</div>
+<div class="form-group">
+    <label for="Email">Email</label>
+    <input type="email" class="form-control" id="Email" placeholder="Email" />
+</div>
+<div class="form-group">
+    <label for="DienThoai">Điện thoại</label>
+    <input type="tel" class="form-control" id="DienThoai" placeholder="Điện thoại" />
+</div>
+<div class="form-group">
+    <label for="AnhDaiDien">Ảnh đại diện</label>
+    <div class="row">
+        <div class="col-xs-9"><input type="text" class="form-control" id="AnhDaiDien" placeholder="Ảnh đại diện" /></div>
+        <div class="col-xs-3"><button type="button" id="btnSelectImage" class="form-control btn btn-default">Chọn ảnh</button></div>
+    </div>
+</div>
+<div class="form-group">
+    <label for="IDChucVu">Chức vụ</label>
+    <select class="form-control" id="IDChucVu">
+        <option disabled selected> -- Select an option -- </option>
+    </select>
+    @*<input type="text" class="form-control" id="IDChucVu" placeholder="Chức vụ" />*@
+</div>
+<div class="form-group">
+    <label for="IDPhongBan">Phòng ban</label>
+    <select class="form-control" id="IDPhongBan">
+        <option disabled selected> -- Select an option -- </option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="IDHeSoLuong">Hệ số lương</label>
+    <select class="form-control" id="IDHeSoLuong">
+        <option disabled selected> -- Select an option -- </option>
+    </select>
+</div>

@@ -1,0 +1,14 @@
+D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\bin\Debug\Model.dll.config
+D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\bin\Debug\Model.dll
+D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\bin\Debug\Model.pdb
+D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\bin\Debug\EntityFramework.dll
+D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\bin\Debug\PagedList.dll
+D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\bin\Debug\PagedList.Mvc.dll
+D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\bin\Debug\EntityFramework.xml
+D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\bin\Debug\PagedList.xml
+D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\bin\Debug\PagedList.Mvc.xml
+D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\obj\Debug\Model.dll
+D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\obj\Debug\Model.pdb
+D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

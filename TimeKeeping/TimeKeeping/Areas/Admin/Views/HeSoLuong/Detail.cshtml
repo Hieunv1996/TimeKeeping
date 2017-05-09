@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Detail.cshtml";
+}
+
+@section modalTitle
+{
+    Thêm mới hệ số lương
+}
+<div class="form-group">
+    <label for="ID">ID</label>
+    <input type="text" class="form-control" id="ID" placeholder="ID" disabled="disabled" />
+</div>
+<div class="form-group">
+    <label for="HeSoLuong">Hệ số lương</label>
+    <input type="number" step="any" class="form-control" id="HeSoLuong" placeholder="Hệ số lương" />
+</div>
+<div class="form-group">
+    <label for="LuongCoBan">Lương cơ bản</label>
+    <input type="number" step="any" class="form-control" id="LuongCoBan" />
+</div>
