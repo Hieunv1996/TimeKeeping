@@ -7,7 +7,7 @@ $(document).ready(function () {
 function loadData() {
     var txtSearch = $('#txtSearch').val();
     $.ajax({
-        url: "/Admin/Luong/List",
+        url: "/Admin/HeSoLuong/List",
         type: "POST",
         contentType: "application/json;charset=utf-8",
         dataType: "json",
@@ -42,7 +42,7 @@ function Add() {
         LuongCoBan: $('#LuongCoBan').val()
     };
     $.ajax({
-        url: "/Admin/Luong/Add",
+        url: "/Admin/HeSoLuong/Add",
         data: JSON.stringify(pbObj),
         type: "POST",
         contentType: "application/json;charset=utf-8",
@@ -62,7 +62,7 @@ function getByID(pbID) {
     $('#HeSoLuong').css('border-color', 'lightgrey');
     $('#LuongCoBan').css('border-color', 'lightgrey');
     $.ajax({
-        url: "/Admin/Luong/GetByID/" + pbID,
+        url: "/Admin/HeSoLuong/GetByID/" + pbID,
         typr: "GET",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
@@ -94,7 +94,7 @@ function Update() {
         LuongCoBan: $('#LuongCoBan').val()
     };
     $.ajax({
-        url: "/Admin/Luong/Update",
+        url: "/Admin/HeSoLuong/Update",
         data: JSON.stringify(pbObj),
         type: "POST",
         contentType: "application/json;charset=utf-8",
@@ -117,7 +117,7 @@ function Delele(ID) {
     var ans = confirm("Bạn muốn xóa bản ghi này?");
     if (ans) {
         $.ajax({
-            url: "/Admin/Luong/Delete/" + ID,
+            url: "/Admin/HeSoLuong/Delete/" + ID,
             type: "POST",
             contentType: "application/json;charset=UTF-8",
             dataType: "json",

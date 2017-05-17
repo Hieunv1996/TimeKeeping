@@ -12,3 +12,17 @@ D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\bin\Debug\PagedList.Mvc.xm
 D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\obj\Debug\Model.dll
 D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\obj\Debug\Model.pdb
 D:\EPU Subjects\WEB ASP\TimeKeeping\TimeKeeping\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\EPU\asp\TimeKeeping\TimeKeeping\Model\bin\Debug\Model.dll.config
+D:\EPU\asp\TimeKeeping\TimeKeeping\Model\bin\Debug\Model.dll
+D:\EPU\asp\TimeKeeping\TimeKeeping\Model\bin\Debug\Model.pdb
+D:\EPU\asp\TimeKeeping\TimeKeeping\Model\bin\Debug\EntityFramework.dll
+D:\EPU\asp\TimeKeeping\TimeKeeping\Model\bin\Debug\EntityFramework.SqlServer.dll
+D:\EPU\asp\TimeKeeping\TimeKeeping\Model\bin\Debug\PagedList.dll
+D:\EPU\asp\TimeKeeping\TimeKeeping\Model\bin\Debug\PagedList.Mvc.dll
+D:\EPU\asp\TimeKeeping\TimeKeeping\Model\bin\Debug\EntityFramework.xml
+D:\EPU\asp\TimeKeeping\TimeKeeping\Model\bin\Debug\EntityFramework.SqlServer.xml
+D:\EPU\asp\TimeKeeping\TimeKeeping\Model\bin\Debug\PagedList.xml
+D:\EPU\asp\TimeKeeping\TimeKeeping\Model\bin\Debug\PagedList.Mvc.xml
+D:\EPU\asp\TimeKeeping\TimeKeeping\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+D:\EPU\asp\TimeKeeping\TimeKeeping\Model\obj\Debug\Model.dll
+D:\EPU\asp\TimeKeeping\TimeKeeping\Model\obj\Debug\Model.pdb
