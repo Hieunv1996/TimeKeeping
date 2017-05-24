@@ -11,16 +11,12 @@ namespace Model.EF
     {
         public long ID { get; set; }
 
-        public long? IDNhanVien { get; set; }
+        public int? IDChucVu { get; set; }
 
         [StringLength(200)]
         public string MoTaPhuCap { get; set; }
 
         public decimal? SoTien { get; set; }
-
-        public DateTime? TuNgay { get; set; }
-
-        public DateTime? DenNgay { get; set; }
 
         public bool? TinhTrang { get; set; }
     }

@@ -212,11 +212,13 @@
     <Compile Include="Areas\Admin\Controllers\ChucVuController.cs" />
     <Compile Include="Areas\Admin\Controllers\HeSoLuongController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhongBanController.cs" />
+    <Compile Include="Areas\Admin\Controllers\PhuCapController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuyenController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaiKhoanController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\DangNhapController.cs" />
     <Compile Include="Areas\Admin\Controllers\NhanVienController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ThuongPhatController.cs" />
     <Compile Include="Areas\Admin\Controllers\TinhTrangController.cs" />
     <Compile Include="Areas\Admin\Controllers\TrangChuController.cs" />
     <Compile Include="Areas\Admin\Models\DangNhapModel.cs" />
@@ -238,7 +240,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Admin\css\common.css" />
     <Content Include="Assets\Admin\css\detail.css" />
+    <Content Include="Assets\Admin\js\phucap.js" />
+    <Content Include="Assets\Admin\js\thuongphat.js" />
     <Content Include="Assets\Admin\js\calamviec.js" />
     <Content Include="Assets\Admin\js\luong.js" />
     <Content Include="Assets\Admin\js\nhanvien.js" />
@@ -1029,6 +1034,10 @@
     <Content Include="Areas\Admin\Views\TinhTrang\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\HeSoLuong\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\HeSoLuong\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ThuongPhat\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ThuongPhat\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\PhuCap\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\PhuCap\Detail.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1114,6 +1123,9 @@
       <Project>{e1faa600-bcfa-4f48-8dea-929b53a7ae40}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

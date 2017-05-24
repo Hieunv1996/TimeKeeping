@@ -93,6 +93,7 @@
     <Compile Include="EF\ViewTaiKhoan.cs" />
     <Compile Include="EF\ViewThuongPhat.cs" />
     <Compile Include="EF\ViewTraLuong.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

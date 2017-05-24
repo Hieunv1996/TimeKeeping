@@ -1,32 +1,58 @@
 ﻿//Load Data in Table when documents is ready  
 $(document).ready(function () {
     loadData();
+    loadNhanVien();
 });
 
 //Load Data function  
-function loadData(){
-
+function loadData() {
     var txtSearch = $('#txtSearch').val();
     $.ajax({
-        url: "/Admin/CaLamViec/List",
+        url: "/Admin/ThuongPhat/List",
         type: "POST",
-        contentType: "application/json;charset=utf-8",
         data: JSON.stringify({ query: txtSearch, page: 1, pageSize: 10 }),
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
         success: function (result) {
             var html = '';
             $.each(result, function (key, item) {
                 html += '<tr>';
                 html += '<td>' + item.ID + '</td>';
-                html += '<td>' +item.TenCaLamViec  + '</td>';
-                html += '<td>' + (zeroFill(item.TGBatDau.Hours) + ":" + zeroFill(item.TGBatDau.Minutes) + ":" + zeroFill(item.TGBatDau.Seconds)) + '</td>';
-                html += '<td>' + (zeroFill(item.TGKetThuc.Hours) + ":" + zeroFill(item.TGKetThuc.Minutes) + ":" + zeroFill(item.TGKetThuc.Seconds)) + '</td>';
+                html += '<td>' + item.Ho + " " + item.Ten + '</td>';
+                html += '<td>' + item.MoTa + '</td>';
+                html += '<td>' + item.SoTien + '</td>';
+
+                var d = new Date(parseInt(item.DauThoiGian.substring(6)));
+                html += '<td>' + d.format("dd/mm/yyyy") + '</td>';
                 html += '<td><a href="#" onclick="return getByID(' + item.ID + ')">Sửa</a> | <a href="#" onclick="Delele(' + item.ID + ')">Xóa</a></td>';
                 html += '</tr>';
             });
             $('.tbody').html(html);
         },
         error: function (errormessage) {
-            alert(errormessage.responseText);
+            alert("Error: " + errormessage.responseText);
+        }
+    });
+}
+
+//Create dropdown Nhân viên
+function loadNhanVien() {
+    $.ajax({
+        url: "/Admin/ThuongPhat/ListNhanVien",
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            var html = '';
+            $.each(result, function (key, item) {
+                $('#IDNhanVien').append($('<option>', {
+                    value: item.ID,
+                    text: item.Ho + " " + item.Ten
+                }));
+            });
+        },
+        error: function (errormessage) {
+            alert("Error: " + errormessage.responseText);
         }
     });
 }
@@ -46,12 +72,12 @@ function Add() {
     }
     var pbObj = {
         ID: $('#ID').val(),
-        TenCaLamViec: $('#TenCaLamViec').val(),
-        TGBatDau: $('#TGBatDau').val(),
-        TGKetThuc: $('#TGKetThuc').val()
+        IDNhanVien: $('#IDNhanVien').val(),
+        MoTa: $('#MoTa').val(),
+        SoTien: $('#SoTien').val()
     };
     $.ajax({
-        url: "/Admin/CaLamViec/Add",
+        url: "/Admin/ThuongPhat/Add",
         data: JSON.stringify(pbObj),
         type: "POST",
         contentType: "application/json;charset=utf-8",
@@ -68,19 +94,19 @@ function Add() {
 
 //Function for getting the Data Based upon Employee ID  
 function getByID(pbID) {
-    $('#TenCaLamViec').css('border-color', 'lightgrey');
-    $('#TGBatDau').css('border-color', 'lightgrey');
-    $('#TGKetThuc').css('border-color', 'lightgrey');
+    $('#IDNhanVien').css('border-color', 'lightgrey');
+    $('#MoTa').css('border-color', 'lightgrey');
+    $('#SoTien').css('border-color', 'lightgrey');
     $.ajax({
-        url: "/Admin/CaLamViec/GetByID/" + pbID,
+        url: "/Admin/ThuongPhat/GetByID/" + pbID,
         typr: "GET",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
             $('#ID').val(result.ID);
-            $('#TenCaLamViec').val(result.TenCaLamViec);
-            $('#TGBatDau').val((zeroFill(result.TGBatDau.Hours) + ":" + zeroFill(result.TGBatDau.Minutes) + ":" + zeroFill(result.TGBatDau.Seconds)));
-            $('#TGKetThuc').val((zeroFill(result.TGKetThuc.Hours) + ":" + zeroFill(result.TGKetThuc.Minutes) + ":" + zeroFill(result.TGKetThuc.Seconds)));
+            $('#IDNhanVien').val(result.IDNhanVien);
+            $('#MoTa').val(result.MoTa);
+            $('#SoTien').val(result.SoTien);
 
             $('#myModal').modal();
             $('#btnUpdate').show();
@@ -101,12 +127,12 @@ function Update() {
     }
     var pbObj = {
         ID: $('#ID').val(),
-        TenCaLamViec: $('#TenCaLamViec').val(),
-        TGBatDau: $('#TGBatDau').val(),
-        TGKetThuc: $('#TGKetThuc').val()
+        IDNhanVien: $('#IDNhanVien').val(),
+        MoTa: $('#MoTa').val(),
+        SoTien: $('#SoTien').val()
     };
     $.ajax({
-        url: "/Admin/CaLamViec/Update",
+        url: "/Admin/ThuongPhat/Update",
         data: JSON.stringify(pbObj),
         type: "POST",
         contentType: "application/json;charset=utf-8",
@@ -115,7 +141,7 @@ function Update() {
             loadData();
             $('#myModal').modal('hide');
             $('#ID').val("");
-            $('#TenCaLamViec').val("");
+            $('#TenThuongPhat').val("");
         },
         error: function (errormessage) {
             alert(errormessage.responseText);
@@ -128,7 +154,7 @@ function Delele(ID) {
     var ans = confirm("Bạn muốn xóa bản ghi này?");
     if (ans) {
         $.ajax({
-            url: "/Admin/CaLamViec/Delete/" + ID,
+            url: "/Admin/ThuongPhat/Delete/" + ID,
             type: "POST",
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
@@ -145,40 +171,32 @@ function Delele(ID) {
 //Function for clearing the textboxes  
 function clearTextBox() {
     $('#ID').val("");
-    $('#TenCaLamViec').val("");
-    $('#TGBatDau').val("");
-    $('#TGKetThuc').val("");
+    $('#IDNhanVien').prop("selectedIndex", 0);
+    $('#MoTa').val("");
+    $('#SoTien').val("");
     $('#btnUpdate').hide();
     $('#btnAdd').show();
-    $('#TenCaLamViec').css('border-color', 'lightgrey');
-    $('#TGBatDau').css('border-color', 'lightgrey');
-    $('#TGKetThuc').css('border-color', 'lightgrey');
+    $('#IDNhanVien').css('border-color', 'lightgrey');
+    $('#MoTa').css('border-color', 'lightgrey');
+    $('#SoTien').css('border-color', 'lightgrey');
 }
 //Valdidation using jquery  
 function validate() {
     var isValid = true;
-    if ($('#TenCaLamViec').val().trim() == "") {
-        $('#TenCaLamViec').css('border-color', 'Red');
+    if ($('#IDNhanVien').val() == null) {
+        $('#IDNhanVien').css('border-color', 'Red');
         isValid = false;
     }
     else {
-        $('#TenCaLamViec').css('border-color', 'lightgrey');
+        $('#IDNhanVien').css('border-color', 'lightgrey');
     }
 
-    if ($('#TGBatDau').val().trim() == "") {
-        $('#TGBatDau').css('border-color', 'Red');
+    if ($('#SoTien').val().trim() == "") {
+        $('#SoTien').css('border-color', 'Red');
         isValid = false;
     }
     else {
-        $('#TGBatDau').css('border-color', 'lightgrey');
-    }
-
-    if ($('#TGKetThuc').val().trim() == "") {
-        $('#TGKetThuc').css('border-color', 'Red');
-        isValid = false;
-    }
-    else {
-        $('#TGKetThuc').css('border-color', 'lightgrey');
+        $('#SoTien').css('border-color', 'lightgrey');
     }
     return isValid;
 }

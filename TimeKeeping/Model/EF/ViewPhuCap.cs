@@ -12,23 +12,16 @@ namespace Model.EF
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long ID { get; set; }
 
-        public long? IDNhanVien { get; set; }
+        public int? IDChucVu { get; set; }
 
         [StringLength(200)]
         public string MoTaPhuCap { get; set; }
 
         public decimal? SoTien { get; set; }
 
-        public DateTime? TuNgay { get; set; }
-
-        public DateTime? DenNgay { get; set; }
-
         public bool? TinhTrang { get; set; }
 
-        [StringLength(50)]
-        public string Ho { get; set; }
+        public string TenChucVu { get; set; }
 
-        [StringLength(50)]
-        public string Ten { get; set; }
     }
 }

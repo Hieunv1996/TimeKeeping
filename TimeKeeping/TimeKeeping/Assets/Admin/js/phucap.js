@@ -1,25 +1,27 @@
 ﻿//Load Data in Table when documents is ready  
 $(document).ready(function () {
     loadData();
+    loadChucVu();
 });
 
 //Load Data function  
-function loadData(){
-
+function loadData() {
     var txtSearch = $('#txtSearch').val();
     $.ajax({
-        url: "/Admin/CaLamViec/List",
+        url: "/Admin/PhuCap/List",
         type: "POST",
         contentType: "application/json;charset=utf-8",
+        dataType: "json",
         data: JSON.stringify({ query: txtSearch, page: 1, pageSize: 10 }),
         success: function (result) {
             var html = '';
             $.each(result, function (key, item) {
                 html += '<tr>';
                 html += '<td>' + item.ID + '</td>';
-                html += '<td>' +item.TenCaLamViec  + '</td>';
-                html += '<td>' + (zeroFill(item.TGBatDau.Hours) + ":" + zeroFill(item.TGBatDau.Minutes) + ":" + zeroFill(item.TGBatDau.Seconds)) + '</td>';
-                html += '<td>' + (zeroFill(item.TGKetThuc.Hours) + ":" + zeroFill(item.TGKetThuc.Minutes) + ":" + zeroFill(item.TGKetThuc.Seconds)) + '</td>';
+                html += '<td>' + item.TenChucVu + '</td>';
+                html += '<td>' + item.MoTaPhuCap + '</td>';
+                html += '<td>' + item.SoTien + '</td>';
+                html += '<td>' + (item.TinhTrang == true ? "Kích hoạt" : "Khóa") + '</td>';
                 html += '<td><a href="#" onclick="return getByID(' + item.ID + ')">Sửa</a> | <a href="#" onclick="Delele(' + item.ID + ')">Xóa</a></td>';
                 html += '</tr>';
             });
@@ -31,13 +33,27 @@ function loadData(){
     });
 }
 
-function zeroFill(n) {
-    if ((n + '').length == 1)
-        return '0' + n;
-
-    return n;
+//Create dropdown Chức vụ
+function loadChucVu() {
+    $.ajax({
+        url: "/Admin/PhuCap/ListChucVu",
+        type: "POST",
+        contentType: "application/json;charset=utf-8",
+        dataType: "json",
+        success: function (result) {
+            var html = '';
+            $.each(result, function (key, item) {
+                $('#IDChucVu').append($('<option>', {
+                    value: item.ID,
+                    text: item.TenChucVu
+                }));
+            });
+        },
+        error: function (errormessage) {
+            alert("Error: " + errormessage.responseText);
+        }
+    });
 }
-
 //Add Data Function   
 function Add() {
     var res = validate();
@@ -45,13 +61,14 @@ function Add() {
         return false;
     }
     var pbObj = {
-        ID: $('#ID').val(),
-        TenCaLamViec: $('#TenCaLamViec').val(),
-        TGBatDau: $('#TGBatDau').val(),
-        TGKetThuc: $('#TGKetThuc').val()
-    };
+        ID : $('#ID').val(),
+        IDChucVu : $('#IDChucVu').val(),
+        MoTaPhuCap : $('#MoTaPhuCap').val(),
+        SoTien : $('#SoTien').val(),
+        TinhTrang: $('#TinhTrang').prop("checked")
+};
     $.ajax({
-        url: "/Admin/CaLamViec/Add",
+        url: "/Admin/PhuCap/Add",
         data: JSON.stringify(pbObj),
         type: "POST",
         contentType: "application/json;charset=utf-8",
@@ -68,21 +85,20 @@ function Add() {
 
 //Function for getting the Data Based upon Employee ID  
 function getByID(pbID) {
-    $('#TenCaLamViec').css('border-color', 'lightgrey');
-    $('#TGBatDau').css('border-color', 'lightgrey');
-    $('#TGKetThuc').css('border-color', 'lightgrey');
+    $('#IDChucVu').css('border-color', 'lightgrey');
     $.ajax({
-        url: "/Admin/CaLamViec/GetByID/" + pbID,
+        url: "/Admin/PhuCap/GetByID/" + pbID,
         typr: "GET",
         contentType: "application/json;charset=UTF-8",
         dataType: "json",
         success: function (result) {
             $('#ID').val(result.ID);
-            $('#TenCaLamViec').val(result.TenCaLamViec);
-            $('#TGBatDau').val((zeroFill(result.TGBatDau.Hours) + ":" + zeroFill(result.TGBatDau.Minutes) + ":" + zeroFill(result.TGBatDau.Seconds)));
-            $('#TGKetThuc').val((zeroFill(result.TGKetThuc.Hours) + ":" + zeroFill(result.TGKetThuc.Minutes) + ":" + zeroFill(result.TGKetThuc.Seconds)));
+            $('#IDChucVu').val(result.IDChucVu);
+            $('#MoTaPhuCap').val(result.MoTaPhuCap);
+            $('#SoTien').val(result.SoTien);
+            $('#TinhTrang').prop("checked",result.TinhTrang);
 
-            $('#myModal').modal();
+            $('#myModal').modal('show');
             $('#btnUpdate').show();
             $('#btnAdd').hide();
         },
@@ -101,12 +117,13 @@ function Update() {
     }
     var pbObj = {
         ID: $('#ID').val(),
-        TenCaLamViec: $('#TenCaLamViec').val(),
-        TGBatDau: $('#TGBatDau').val(),
-        TGKetThuc: $('#TGKetThuc').val()
+        IDChucVu: $('#IDChucVu').val(),
+        MoTaPhuCap: $('#MoTaPhuCap').val(),
+        SoTien: $('#SoTien').val(),
+        TinhTrang: $('#TinhTrang').prop("checked")
     };
     $.ajax({
-        url: "/Admin/CaLamViec/Update",
+        url: "/Admin/PhuCap/Update",
         data: JSON.stringify(pbObj),
         type: "POST",
         contentType: "application/json;charset=utf-8",
@@ -115,7 +132,10 @@ function Update() {
             loadData();
             $('#myModal').modal('hide');
             $('#ID').val("");
-            $('#TenCaLamViec').val("");
+            $('#IDChucVu').prop("selectedIndex", 0);
+            $('#MoTaPhuCap').val("");
+            $('#SoTien').val("");
+            $('#TinhTrang').prop("checked", true);
         },
         error: function (errormessage) {
             alert(errormessage.responseText);
@@ -128,7 +148,7 @@ function Delele(ID) {
     var ans = confirm("Bạn muốn xóa bản ghi này?");
     if (ans) {
         $.ajax({
-            url: "/Admin/CaLamViec/Delete/" + ID,
+            url: "/Admin/PhuCap/Delete/" + ID,
             type: "POST",
             contentType: "application/json;charset=UTF-8",
             dataType: "json",
@@ -145,40 +165,30 @@ function Delele(ID) {
 //Function for clearing the textboxes  
 function clearTextBox() {
     $('#ID').val("");
-    $('#TenCaLamViec').val("");
-    $('#TGBatDau').val("");
-    $('#TGKetThuc').val("");
+    $('#MoTaPhuCap').val("");
+    $('#SoTien').val("");
+    $('#TinhTrang').prop("checked", true);
+    $('#IDChucVu').prop("selectedIndex",0);
     $('#btnUpdate').hide();
     $('#btnAdd').show();
-    $('#TenCaLamViec').css('border-color', 'lightgrey');
-    $('#TGBatDau').css('border-color', 'lightgrey');
-    $('#TGKetThuc').css('border-color', 'lightgrey');
+    $('#TenPhuCap').css('border-color', 'lightgrey');
 }
 //Valdidation using jquery  
 function validate() {
     var isValid = true;
-    if ($('#TenCaLamViec').val().trim() == "") {
-        $('#TenCaLamViec').css('border-color', 'Red');
+    if ($('#IDChucVu').val() == null) {
+        $('#IDChucVu').css('border-color', 'Red');
         isValid = false;
     }
     else {
-        $('#TenCaLamViec').css('border-color', 'lightgrey');
+        $('#IDChucVu').css('border-color', 'lightgrey');
     }
-
-    if ($('#TGBatDau').val().trim() == "") {
-        $('#TGBatDau').css('border-color', 'Red');
+    if ($('#SoTien').val().trim() == "") {
+        $('#SoTien').css('border-color', 'Red');
         isValid = false;
     }
     else {
-        $('#TGBatDau').css('border-color', 'lightgrey');
-    }
-
-    if ($('#TGKetThuc').val().trim() == "") {
-        $('#TGKetThuc').css('border-color', 'Red');
-        isValid = false;
-    }
-    else {
-        $('#TGKetThuc').css('border-color', 'lightgrey');
+        $('#SoTien').css('border-color', 'lightgrey');
     }
     return isValid;
 }

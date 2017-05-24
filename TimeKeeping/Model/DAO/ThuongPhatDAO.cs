@@ -40,7 +40,7 @@ namespace Model.DAO
                 newThuongPhat.IDNhanVien = thuongPhat.IDNhanVien;
                 newThuongPhat.MoTa = thuongPhat.MoTa;
                 newThuongPhat.SoTien = thuongPhat.SoTien;
-                newThuongPhat.DauThoiGian = thuongPhat.DauThoiGian;
+                newThuongPhat.DauThoiGian = DateTime.Now;
                 return obj.SaveChanges() > 0;
             }
             catch
@@ -50,14 +50,14 @@ namespace Model.DAO
             }
         }
 
-        public IEnumerable<ThuongPhat> GetListThuongPhat(string keyword, int page, int pageSize)
+        public IEnumerable<ViewThuongPhat> GetListThuongPhat(string keyword, int page, int pageSize)
         {
-            IEnumerable<ThuongPhat> objThuongPhats = obj.ThuongPhats;
+            IEnumerable<ViewThuongPhat> objViewThuongPhats = obj.ViewThuongPhats;
             if (!string.IsNullOrEmpty(keyword))
             {
-                objThuongPhats = objThuongPhats.Where(x => x.MoTa.ToLower().Contains(keyword.ToLower()));
+                objViewThuongPhats = objViewThuongPhats.Where(x => (x.Ho + " " + x.Ten).ToLower().Contains(keyword.ToLower()));
             }
-            return objThuongPhats.OrderBy(x => x.ID).ToPagedList(page, pageSize);
+            return objViewThuongPhats.OrderBy(x => x.ID).ToPagedList(page, pageSize);
         }
 
         public ThuongPhat GetByThuongPhatID(long id)

@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Areas/Admin/Views/Shared/_Detail.cshtml";
+}
+
+@section modalTitle
+{
+    Thêm mới thưởng/ phạt
+}
+<div class="form-group">
+    <label for="ID">ID</label>
+    <input type="text" class="form-control" id="ID" placeholder="ID Phòng ban" disabled="disabled" />
+</div>
+<div class="form-group">
+    <label for="IDNhanVien">Nhân viên</label>
+    <select class="form-control" id="IDNhanVien">
+        <option disabled selected> -- Select an option -- </option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="MoTa">Mô tả</label>
+    <textarea class="form-control" id="MoTa" placeholder="Mô tả"></textarea>
+</div>
+<div class="form-group">
+    <label for="SoTien">Số tiền</label>
+    <input type="number" class="form-control" id="SoTien" placeholder="" />
+</div>

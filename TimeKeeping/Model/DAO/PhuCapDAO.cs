@@ -36,11 +36,9 @@ namespace Model.DAO
             try
             {
                 PhuCap newPhuCap = obj.PhuCaps.Find(phuCap.ID);
-                newPhuCap.IDNhanVien = phuCap.IDNhanVien;
+                newPhuCap.IDChucVu = phuCap.IDChucVu;
                 newPhuCap.MoTaPhuCap = phuCap.MoTaPhuCap;
                 newPhuCap.SoTien = phuCap.SoTien;
-                newPhuCap.TuNgay = phuCap.TuNgay;
-                newPhuCap.DenNgay = phuCap.DenNgay;
                 newPhuCap.TinhTrang = phuCap.TinhTrang;
                 return obj.SaveChanges() > 0;
             }
@@ -51,14 +49,14 @@ namespace Model.DAO
             }
         }
 
-        public IEnumerable<PhuCap> GetListPhuCap(string keyword, int page, int pageSize)
+        public IEnumerable<ViewPhuCap> GetListPhuCap(string keyword, int page, int pageSize)
         {
-            IEnumerable<PhuCap> objPhongBans = obj.PhuCaps;
+            IEnumerable<ViewPhuCap> objViewPhuCaps = obj.ViewPhuCaps;
             if (!string.IsNullOrEmpty(keyword))
             {
-                objPhongBans = objPhongBans.Where(x => x.IDNhanVien.ToString().Contains(keyword.ToLower()));
+                objViewPhuCaps = objViewPhuCaps.Where(x => x.TenChucVu.ToLower().Contains(keyword.ToLower()));
             }
-            return objPhongBans.OrderBy(x => x.ID).ToPagedList(page, pageSize);
+            return objViewPhuCaps.OrderBy(x => x.ID).ToPagedList(page, pageSize);
         }
 
         public PhuCap GetByPhuCapID(long id)
