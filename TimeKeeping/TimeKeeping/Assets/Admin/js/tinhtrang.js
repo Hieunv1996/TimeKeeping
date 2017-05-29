@@ -50,6 +50,12 @@ function Add() {
         success: function (result) {
             loadData();
             $('#myModal').modal('hide');
+            if (result == true) {
+                alertDisplay("Thêm bản ghi thành công", "alert-success");
+            }
+            else {
+                alertDisplay("Thêm bản ghi không thành công", "alert-danger");
+            }
         },
         error: function (errormessage) {
             alert(errormessage.responseText);
@@ -105,6 +111,12 @@ function Update() {
             $('#ID').val("");
             $('#KiHieu').val("");
             $('#MoTa').val("");
+            if (result == true) {
+                alertDisplay("Sửa bản ghi thành công", "alert-success");
+            }
+            else {
+                alertDisplay("Sửa bản ghi không thành công", "alert-danger");
+            }
         },
         error: function (errormessage) {
             alert(errormessage.responseText);
@@ -123,6 +135,12 @@ function Delele(ID) {
             dataType: "json",
             success: function (result) {
                 loadData();
+                if (result == true) {
+                    alertDisplay("Xóa bản ghi thành công", "alert-success");
+                }
+                else {
+                    alertDisplay("Xóa bản ghi không thành công", "alert-danger");
+                }
             },
             error: function (errormessage) {
                 alert(errormessage.responseText);

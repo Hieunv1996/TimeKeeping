@@ -180,3 +180,8 @@ D:\EPU\asp\TimeKeeping\TimeKeeping\TimeKeeping\bin\Microsoft.Owin.Security.Micro
 D:\EPU\asp\TimeKeeping\TimeKeeping\TimeKeeping\obj\Debug\TimeKeeping.csprojResolveAssemblyReference.cache
 D:\EPU\asp\TimeKeeping\TimeKeeping\TimeKeeping\obj\Debug\TimeKeeping.dll
 D:\EPU\asp\TimeKeeping\TimeKeeping\TimeKeeping\obj\Debug\TimeKeeping.pdb
+D:\EPU\asp\TimeKeeping\TimeKeeping\TimeKeeping\bin\CaptchaMvc.dll
+D:\EPU\asp\TimeKeeping\TimeKeeping\TimeKeeping\bin\CaptchaMvc.pdb
+D:\EPU\asp\TimeKeeping\TimeKeeping\TimeKeeping\bin\CaptchaMvc.xml
+D:\EPU\asp\TimeKeeping\TimeKeeping\TimeKeeping\bin\BotDetect.dll
+D:\EPU\asp\TimeKeeping\TimeKeeping\TimeKeeping\bin\BotDetect.Web.Mvc.dll

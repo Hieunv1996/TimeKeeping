@@ -20,7 +20,7 @@ namespace TimeKeeping.Areas.Admin.Controllers
     public class NhanVienController : BaseController
     {
         private NhanVienDAO dao = new NhanVienDAO();
-        
+   
         // GET: Admin/TaiKhoan
         public ActionResult Index()
         {

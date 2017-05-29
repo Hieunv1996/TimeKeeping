@@ -62,12 +62,12 @@ namespace Model.DAO
             return objQuyens.OrderBy(x => x.ID).ToPagedList(page, pageSize);
         }
 
-        public Quyen GetByQuyenID(long id)
+        public Quyen GetByQuyenID(int id)
         {
             return obj.Quyens.Find(id);
         }
 
-        public bool Delete(long id)
+        public bool Delete(int id)
         {
             try
             {

@@ -26,7 +26,7 @@
         public string MatKhau { get; set; }
 
         [Display(Name = "Quyền")]
-        public int? IDQuyen { get; set; }
+        public int IDQuyen { get; set; }
 
         [Display(Name = "Ngày tạo")]
         [Required(ErrorMessage = "Vui lòng nhập quyền")]

@@ -25,7 +25,7 @@ namespace Model.DAO
                 obj.NhanViens.Add(nhanVien);
                 return obj.SaveChanges() > 0;
             }
-            catch
+            catch(Exception e)
             {
                 return false;
             }

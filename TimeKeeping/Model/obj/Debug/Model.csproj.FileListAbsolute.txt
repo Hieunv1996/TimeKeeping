@@ -25,4 +25,3 @@ D:\EPU\asp\TimeKeeping\TimeKeeping\Model\bin\Debug\PagedList.xml
 D:\EPU\asp\TimeKeeping\TimeKeeping\Model\bin\Debug\PagedList.Mvc.xml
 D:\EPU\asp\TimeKeeping\TimeKeeping\Model\obj\Debug\Model.dll
 D:\EPU\asp\TimeKeeping\TimeKeeping\Model\obj\Debug\Model.pdb
-D:\EPU\asp\TimeKeeping\TimeKeeping\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

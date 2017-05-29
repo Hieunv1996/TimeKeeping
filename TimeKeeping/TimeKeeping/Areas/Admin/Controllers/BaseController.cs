@@ -13,7 +13,7 @@ namespace TimeKeeping.Areas.Admin.Controllers
         // GET: Admin/Base
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            var session = (UserLogin)Session[CommonConstants.USER_SESSION];
+            var session = (UserLogin)Session[CommonConstants.ADMIN_SESSION];
             if(session == null){
                 filterContext.Result = new RedirectToRouteResult(new
                     System.Web.Routing.RouteValueDictionary(new { controller = "DangNhap", action = "Index", Area = "Admin" }));

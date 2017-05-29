@@ -85,7 +85,7 @@ function loadNhanVien() {
 //Add Data Function   
 function Add() {
     var res = validate();
-    if (res == false) {
+    if (res === false) {
         return false;
     }
     var pbObj = {
@@ -105,6 +105,12 @@ function Add() {
         success: function (result) {
             loadData();
             $('#myModal').modal('hide');
+            if (result === true) {
+                alertDisplay("Thêm bản ghi thành công", "alert-success");
+            }
+            else {
+                alertDisplay("Thêm bản ghi không thành công", "alert-danger");
+            }
         },
         error: function (errormessage) {
             alert("Error: " + errormessage.responseText);
@@ -125,7 +131,7 @@ function getByID(pbID) {
             $('#ID').val(result.ID);
             $('#IDNhanVien').val(result.IDNhanVien);
             $('#TenDangNhap').val(result.TenDangNhap);
-            $('#MatKhau').val(result.MatKhau);
+            $('#MatKhau').val("");
             $('#IDQuyen').val(result.IDQuyen);
             $('#TinhTrang').val(result.TinhTrang.toString());
 
@@ -143,7 +149,7 @@ function getByID(pbID) {
 //function for updating employee's record  
 function Update() {
     var res = validate();
-    if (res == false) {
+    if (res === false) {
         return false;
     }
     var pbObj = {
@@ -170,6 +176,12 @@ function Update() {
             $('#IDQuyen').val("");
             $('#NgayTao').val("");
             $('#TinhTrang').val("");
+            if (result == true) {
+                alertDisplay("Sửa bản ghi thành công", "alert-success");
+            }
+            else {
+                alertDisplay("Sửa bản ghi không thành công", "alert-danger");
+            }
         },
         error: function (errormessage) {
             alert("Error: " + errormessage.responseText);
@@ -188,6 +200,12 @@ function Delele(ID) {
             dataType: "json",
             success: function (result) {
                 loadData();
+                if (result === true) {
+                    alertDisplay("Xóa bản ghi thành công", "alert-success");
+                }
+                else {
+                    alertDisplay("Xóa bản ghi không thành công", "alert-danger");
+                }
             },
             error: function (errormessage) {
                 alert("Error: " + errormessage.responseText);
@@ -224,19 +242,25 @@ function validate() {
     else {
         $('#IDNhanVien').css('border-color', 'lightgrey');
     }
-    if ($('#TenDangNhap').val().trim() == "") {
+    if ($('#TenDangNhap').val().trim() === "") {
         $('#TenDangNhap').css('border-color', 'Red');
         isValid = false;
     }
     else {
         $('#TenDangNhap').css('border-color', 'lightgrey');
     }
-    if ($('#MatKhau').val().trim() == "") {
+    if ($('#MatKhau').val().trim() === "") {
         $('#MatKhau').css('border-color', 'Red');
         isValid = false;
     }
     else {
         $('#MatKhau').css('border-color', 'lightgrey');
+    }
+    if ($('#MatKhau').val() !== $('#ReMatKhau').val()) {
+        alert("Mật khẩu mới không khớp");
+        $('#MatKhau').css('border-color', 'Red');
+        $('#ReMatKhau').css('border-color', 'Red');
+        isValid = false;
     }
     if ($('#IDQuyen').val() == null) {
         $('#IDQuyen').css('border-color', 'Red');

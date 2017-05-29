@@ -21,7 +21,7 @@ function loadData() {
                 html += '<td>' + item.TenChucVu + '</td>';
                 html += '<td>' + item.MoTaPhuCap + '</td>';
                 html += '<td>' + item.SoTien + '</td>';
-                html += '<td>' + (item.TinhTrang == true ? "Kích hoạt" : "Khóa") + '</td>';
+                html += '<td>' + (item.TinhTrang === true ? "Kích hoạt" : "Khóa") + '</td>';
                 html += '<td><a href="#" onclick="return getByID(' + item.ID + ')">Sửa</a> | <a href="#" onclick="Delele(' + item.ID + ')">Xóa</a></td>';
                 html += '</tr>';
             });
@@ -76,6 +76,12 @@ function Add() {
         success: function (result) {
             loadData();
             $('#myModal').modal('hide');
+            if (result === true) {
+                alertDisplay("Thêm bản ghi thành công", "alert-success");
+            }
+            else {
+                alertDisplay("Thêm bản ghi không thành công", "alert-danger");
+            }
         },
         error: function (errormessage) {
             alert(errormessage.responseText);
@@ -136,6 +142,12 @@ function Update() {
             $('#MoTaPhuCap').val("");
             $('#SoTien').val("");
             $('#TinhTrang').prop("checked", true);
+            if (result == true) {
+                alertDisplay("Sửa bản ghi thành công", "alert-success");
+            }
+            else {
+                alertDisplay("Sửa bản ghi không thành công", "alert-danger");
+            }
         },
         error: function (errormessage) {
             alert(errormessage.responseText);
@@ -154,6 +166,12 @@ function Delele(ID) {
             dataType: "json",
             success: function (result) {
                 loadData();
+                if (result == true) {
+                    alertDisplay("Xóa bản ghi thành công", "alert-success");
+                }
+                else {
+                    alertDisplay("Xóa bản ghi không thành công", "alert-danger");
+                }
             },
             error: function (errormessage) {
                 alert(errormessage.responseText);
@@ -183,7 +201,7 @@ function validate() {
     else {
         $('#IDChucVu').css('border-color', 'lightgrey');
     }
-    if ($('#SoTien').val().trim() == "") {
+    if ($('#SoTien').val().trim() === "") {
         $('#SoTien').css('border-color', 'Red');
         isValid = false;
     }

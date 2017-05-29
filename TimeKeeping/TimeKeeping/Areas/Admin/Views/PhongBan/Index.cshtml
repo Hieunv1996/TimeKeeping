@@ -1,5 +1,5 @@
 ﻿@*@model PagedList.IPagedList<Model.EF.PhongBan>
-@using PagedList.Mvc*@
+    @using PagedList.Mvc*@
 
 @{
     Layout = "../Shared/_Layout.cshtml";
@@ -39,9 +39,7 @@
                                 <th>Hành động</th>
                             </tr>
                         </thead>
-                        <tbody class="tbody">
-
-                        </tbody>
+                        <tbody class="tbody"></tbody>
                     </table>
                     @*@Html.PagedListPager(Model, page => Url.Action("List", new { page, @keyword = @ViewBag.SearchString }))*@
                 </div>
@@ -51,6 +49,7 @@
 </div>
 @section assets
 {
+    <script src="/Assets/Admin/js/common.js"></script>
     <script src="/Assets/Admin/js/phongban.js"></script>
 }
 

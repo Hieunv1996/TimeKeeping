@@ -48,6 +48,15 @@
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="BotDetect, Version=4.2.0.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.2.0\lib\net45\BotDetect.dll</HintPath>
+    </Reference>
+    <Reference Include="BotDetect.Web.Mvc, Version=4.2.0.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Captcha.4.2.0\lib\net45\BotDetect.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
+      <HintPath>..\packages\CaptchaMvc.Mvc5.1.5.0\lib\net45-full\CaptchaMvc.dll</HintPath>
+    </Reference>
     <Reference Include="CKFinder, Version=2.5.0.2791, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\docs\ckfinder_aspnet_2.5.1\ckfinder\bin\Debug\CKFinder.dll</HintPath>
@@ -210,6 +219,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\Controllers\CaLamViecController.cs" />
     <Compile Include="Areas\Admin\Controllers\ChucVuController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DangXuatController.cs" />
     <Compile Include="Areas\Admin\Controllers\HeSoLuongController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhongBanController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhuCapController.cs" />
@@ -226,14 +236,15 @@
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\Encryptor.cs" />
     <Compile Include="Common\UserLogin.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DangNhapController.cs" />
+    <Compile Include="Controllers\TrangChuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Models\DangNhapModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -257,7 +268,7 @@
     <Content Include="Assets\Admin\sbAdmin\dist\css\sb-admin-2.min.css" />
     <Content Include="Assets\Admin\sbAdmin\dist\js\sb-admin-2.js" />
     <Content Include="Assets\Admin\sbAdmin\dist\js\sb-admin-2.min.js" />
-    <Content Include="Assets\Admin\js\dateFormat.js" />
+    <Content Include="Assets\Admin\js\common.js" />
     <Content Include="Assets\Admin\sbAdmin\js\sb-admin-2.js" />
     <Content Include="Assets\Admin\plugins\ckfinder\bin\Debug\CKFinder.dll" />
     <Content Include="Assets\Admin\plugins\ckfinder\bin\Debug\CKFinder.pdb" />
@@ -946,6 +957,9 @@
     <Content Include="Assets\Admin\sbAdmin\vendor\morrisjs\morris.min.js" />
     <Content Include="Assets\Admin\sbAdmin\vendor\raphael\raphael.js" />
     <Content Include="Assets\Admin\sbAdmin\vendor\raphael\raphael.min.js" />
+    <Content Include="Assets\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Assets\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Assets\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\PagedList.css" />
@@ -1038,6 +1052,39 @@
     <Content Include="Areas\Admin\Views\ThuongPhat\Detail.cshtml" />
     <Content Include="Areas\Admin\Views\PhuCap\Index.cshtml" />
     <Content Include="Areas\Admin\Views\PhuCap\Detail.cshtml" />
+    <Content Include="Assets\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Assets\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Assets\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Assets\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Assets\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Assets\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Assets\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Assets\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Assets\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Assets\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Assets\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Assets\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Assets\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Assets\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Assets\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Assets\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Assets\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Assets\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Assets\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Assets\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Assets\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Assets\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Assets\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Assets\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Assets\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Assets\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Assets\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Assets\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Assets\font-awesome-4.7.0\scss\_variables.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1078,38 +1125,19 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\TrangChu\Index.cshtml" />
+    <Content Include="Views\DangNhap\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Areas\Admin\Views\DangXuat\" />
+    <Folder Include="Assets\Site\" />
     <Folder Include="Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

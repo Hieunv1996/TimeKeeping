@@ -1,6 +1,4 @@
-﻿@*@model PagedList.IPagedList<Model.EF.PhongBan>
-@using PagedList.Mvc*@
-
+﻿
 @{
     Layout = "../Shared/_Layout.cshtml";
 }
@@ -33,22 +31,20 @@
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Họ Tên</th>
-                            <th>Ngày sinh</th>
-                            <th>CMND</th>
-                            <th>Email</th>
-                            <th>Điện thoại</th>
-                            <th>Chức vụ</th>
-                            <th>Phòng ban</th>
-                            <th>Hệ số lương</th>
-                            <th>Hành động</th>
-                        </tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>Họ Tên</th>
+                                <th>Ngày sinh</th>
+                                <th>CMND</th>
+                                <th>Email</th>
+                                <th>Điện thoại</th>
+                                <th>Chức vụ</th>
+                                <th>Phòng ban</th>
+                                <th>Hệ số lương</th>
+                                <th>Hành động</th>
+                            </tr>
                         </thead>
-                        <tbody class="tbody">
-
-                        </tbody>
+                        <tbody class="tbody"></tbody>
                     </table>
                     @*@Html.PagedListPager(Model, page => Url.Action("List", new { page, @keyword = @ViewBag.SearchString }))*@
                 </div>
@@ -56,9 +52,11 @@
         </div>
     </div>
 </div>
+
+
 @section assets
 {
-    <script src="/Assets/Admin/js/dateFormat.js"></script>
+    <script src="/Assets/Admin/js/common.js"></script>
     <script src="/Assets/Admin/js/nhanvien.js"></script>
 }
 

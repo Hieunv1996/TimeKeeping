@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using PagedList;
 using Model.EF;
 using System.Data.Entity.Validation;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Model.DAO
 {
@@ -59,14 +60,14 @@ namespace Model.DAO
             return obj.ViewTaiKhoans.ToList();
         }
 
-        public IEnumerable<ViewTaiKhoan> GetListTaiKhoan(string query,int page, int pageSize)
+        public IEnumerable<ViewTaiKhoan> GetListTaiKhoan(string query, int page, int pageSize)
         {
             IEnumerable<ViewTaiKhoan> accounts = obj.ViewTaiKhoans;
             if (!string.IsNullOrEmpty(query))
             {
                 accounts = accounts.Where(x => (x.Ho + " " + x.Ten).ToLower().Contains(query.ToLower()) || x.TenDangNhap.ToLower().Contains(query.ToLower()));
             }
-            return accounts.OrderBy(x => x.ID).ToPagedList(page,pageSize);
+            return accounts.OrderBy(x => x.ID).ToPagedList(page, pageSize);
         }
 
         public TaiKhoan GetByUsername(string username)
@@ -79,9 +80,28 @@ namespace Model.DAO
             return obj.TaiKhoans.Find(id);
         }
 
-        public bool LoginValid(String username, String password)
+        public bool LoginValid(String username, String password, bool isAdmin = false)
         {
-            return (obj.TaiKhoans.Count(x => x.TenDangNhap == username && x.MatKhau == password) > 0);
+            List<TaiKhoan> tks = obj.TaiKhoans.Where(x => x.TenDangNhap == username && x.MatKhau == password).ToList();
+            if (tks.Count > 0)
+            {
+                var tk = tks[0];
+                if (isAdmin)
+                {
+                    var dao = new QuyenDAO();
+                    if (!dao.GetByQuyenID(tk.IDQuyen).TenQuyen.Equals("User"))
+                        return true;
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool Delete(long id)

@@ -43,6 +43,7 @@ namespace TimeKeeping.Areas.Admin.Controllers
 
         public JsonResult Add(TaiKhoan pb)
         {
+            pb.MatKhau = Encryptor.MD5Hash(pb.MatKhau);
             return Json(dao.Insert(pb), JsonRequestBehavior.AllowGet);
         }
         public JsonResult GetbyID(int ID)
@@ -52,6 +53,7 @@ namespace TimeKeeping.Areas.Admin.Controllers
         }
         public JsonResult Update(TaiKhoan pb)
         {
+            pb.MatKhau = Encryptor.MD5Hash(pb.MatKhau);
             return Json(dao.Update(pb), JsonRequestBehavior.AllowGet);
         }
         public JsonResult Delete(int ID)

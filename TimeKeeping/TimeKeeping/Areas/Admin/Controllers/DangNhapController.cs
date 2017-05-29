@@ -22,7 +22,7 @@ namespace TimeKeeping.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var dao = new TaiKhoanDAO();
-                var result = dao.LoginValid(model.Username, Encryptor.MD5Hash(model.Password));
+                var result = dao.LoginValid(model.Username, Encryptor.MD5Hash(model.Password),true);
                 if (result)
                 {
                     var user = dao.GetByUsername(model.Username);
@@ -32,10 +32,10 @@ namespace TimeKeeping.Areas.Admin.Controllers
                     }
                     else
                     {
-                        var userSession = new UserLogin();
-                        userSession.Username = user.TenDangNhap;
-                        userSession.UserID = user.IDNhanVien;
-                        Session.Add(CommonConstants.USER_SESSION, userSession);
+                        var adminSession = new UserLogin();
+                        adminSession.Username = user.TenDangNhap;
+                        adminSession.UserID = user.IDNhanVien;
+                        Session.Add(CommonConstants.ADMIN_SESSION, adminSession);
                         return RedirectToAction("Index", "TrangChu");
                     }
                 }
@@ -46,5 +46,10 @@ namespace TimeKeeping.Areas.Admin.Controllers
             }
             return View("Index");
         }
+////        public ActionResult Logout()
+////        {
+////            Session.Remove(CommonConstants.ADMIN_SESSION);
+////            return RedirectToAction("Index", "DangNhap");
+////        }
     }
 }

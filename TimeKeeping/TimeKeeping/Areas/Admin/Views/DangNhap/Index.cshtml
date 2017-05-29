@@ -52,9 +52,11 @@
                             <fieldset>
                                 <div class="form-group">
                                     @Html.TextBoxFor(model => model.Username, new { @placeholder = "Nhập tài khoản" , @class = "form-control", @autofocus = "autofocus" })
+                                    @Html.ValidationMessageFor(model => model.Username,"" ,new {@class="text-danger"})
                                 </div>
                                 <div class="form-group">
                                     @Html.PasswordFor(model => model.Password, new { @placeholder = "Nhập mật khẩu", @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="checkbox">
                                     <label>
